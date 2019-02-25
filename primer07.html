@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<meta charset = utf8>
+<html>
+<head>
+    <title>Stikalo</title>
+</head>
+
+<body>
+    <div id="divZaIzpis"></div>
+    <br>
+
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+<script type="text/javascript">
+"use strict"; // za uporabo razredov ("class")
+
+var socket = io.connect("192.168.1.204:8080"); // povez. prek vtičnika
+
+var divZaIzpis = document.getElementById("divZaIzpis");
+
+function log(sporocilo) {
+    return "<div>" + sporocilo + "</div>";
+}
+
+socket.on("sporočiloKlientu", function (sporocilo){
+    console.log(sporocilo);
+    divZaIzpis.innerHTML += log(sporocilo); // dodamo sporočilo
+});
+
+</script>
+    
+</body>
+
+</html>
