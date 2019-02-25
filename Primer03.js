@@ -13,6 +13,8 @@ http.createServer(function(req, res){ // http.createServer([requestListener])
     var operator1 = parseInt(deli[1],10); // 10 osnova številskega sistema, decimalno (od 2 do 36)
     var operator2 = parseInt(deli[2],10); // 10 osnova številskega sistema, decimalno (od 2 do 36) 
         
+        
+
      if (operator1 == 0) {
         console.log("Izključevanje LED1");
         board.digitalWrite(13, board.LOW);
@@ -31,23 +33,26 @@ http.createServer(function(req, res){ // http.createServer([requestListener])
         board.digitalWrite(8, board.HIGH);
     }   
     
-    var oneON = 0;
-    function blink(){
-        if (oneON == 0) {
-          board.digitalWrite(13, board.LOW);
+
+            var oneON = 0;
+    var twoON = 0;
+    function blink(light){
+        if (oneON == 0 || twoON == 0) {
+          board.digitalWrite(light, board.LOW);
           oneON = 1;
+          twoON = 1;
         }else{
-          board.digitalWrite(13, board.HIGH);
+          board.digitalWrite(light, board.HIGH);
           oneON = 0; 
+          twoON = 0;
         }
     }
-
     if (operator1 == 3 && operator2 == 3) {
-        console.log("Blink LED1");
+
         setInterval(function(){
-            blink();
-        }, 1000);
-        
+            console.log("Blink LED1");
+            blink(13);
+        }, 200);
     }
     
     
