@@ -44,7 +44,7 @@ board.on("ready", function(){
     if (value == 1) {
         console.log("LED vklopljena");
         board.digitalWrite(13, board.HIGH);
-        posljiVrednostPrekoVticnika("LED vklopljena");
+        posljiVrednostPrekoVticnika("LED vkljopljena");
     }
     
 }); // konec "board.digitalRead"
